@@ -1,1 +1,0 @@
-{"name":"Local: main","url":"/home/temmie/Documents/GitHub/personal/study_group/main.cpp","tests":[{"id":1675045190200,"input":"5\n1 3 4 7 2","output":"2 4\n1 3 5\n2\n1\n2"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/temmie/Documents/GitHub/personal/study_group/main.cpp","group":"local","local":true}

@@ -1,4 +1,0 @@
-\beamer@sectionintoc {1}{位元運算}{3}{0}{1}
-\beamer@sectionintoc {2}{字元轉換}{21}{0}{2}
-\beamer@sectionintoc {3}{陣列的使用}{29}{0}{3}
-\beamer@sectionintoc {4}{區間問題}{46}{0}{4}

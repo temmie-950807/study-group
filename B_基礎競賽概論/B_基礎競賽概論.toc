@@ -1,0 +1,3 @@
+\beamer@sectionintoc {1}{賽制介紹}{3}{0}{1}
+\beamer@sectionintoc {2}{複雜度分析}{8}{0}{2}
+\beamer@sectionintoc {3}{雜項}{27}{0}{3}

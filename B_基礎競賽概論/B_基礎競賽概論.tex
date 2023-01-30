@@ -159,7 +159,7 @@
 
 \begin{frame}
     \frametitle{例題}
-    \begin{block}{複雜度分析練習-1}
+    \begin{block}{時間複雜度練習-1}
         請試著分析下面程式碼的時間複雜度
 
         \vspace{0.5cm}
@@ -173,24 +173,23 @@
 
 \begin{frame}
     \frametitle{例題}
-    \begin{block}{複雜度分析練習-2}
+    \begin{block}{時間複雜度練習-2}
         請試著分析下面程式碼的時間複雜度
 
         \vspace{0.5cm}
         \includegraphics[width=4.0cm]{img/code_2.png}
-    
-        \begin{itemize}
-            \item<2-> 每次遞迴都會增加兩倍的數字，實際上會有 $2^{n-1}$ 次操作
-            \item<2-> 答案為 $O(2^n)$
-        \end{itemize}
     \end{block}
+    \begin{itemize}
+        \item<2-> 每次遞迴都會增加兩倍的數字，實際上會有 $2^{n-1}$ 次操作
+        \item<2-> 答案為 $O(2^n)$
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
     \frametitle{作業}
     \begin{itemize}
         \item 回家把這些影片看完，練習看看裡面的題目吧 :D
-        \item \href{https://youtube.com/playlist?list=PLuV4P3EY8fXl-2qmLTZVWS3deHyxxWLUI}{AA競程 Level 1 公開課 7\~13}
+        \item \href{https://youtube.com/playlist?list=PLuV4P3EY8fXl-2qmLTZVWS3deHyxxWLUI}{AA競程 Level 1 公開課 7 $\sim$ 13}
     \end{itemize}
 \end{frame}
 
@@ -235,12 +234,18 @@
 
 \begin{frame}
     \frametitle{IO 加速}
+    \begin{block}{IO 優化練習}
+        \href{https://codeforces.com/group/S6XjkGb6qB/contest/403070/problem/A}{題目網址}
+
+        給你 $n$ 個字串，對於每個字串 $s_i$ 輸出 "$s_i$ eat pasta pls uwu"
+
+        保證 $1 \leq n \leq 5 \times 10^5$ 且 $1 \leq \mid s \mid \leq 10$
+    \end{block}
     \begin{itemize}
-        \item \href{https://codeforces.com/group/S6XjkGb6qB/contest/403070/problem/A}{先試試看這題吧}
-        \item<2-> 如此簡單的題目怎麼過不了？
-        \item<3-> 這是因為輸入、輸出太多導致超時
-        \item<3-> 可以透過加上 cin.tie(0)、ios::sync\_with\_stdio(0) 和不使用 endl 改用 '$\backslash$ n' 加速
-        \item<4-> 想了解原因？私訊我吧
+        \item {先試試看這題吧}
+        \item<2-> 這是因為輸入、輸出太多導致超時
+        \item<2-> 可以透過加上 \textbf{cin.tie(0)}、\textbf{ios::sync\_with\_stdio(0)} 和不使用 endl 改用 \textbf{'$\backslash$ n'} 來加速
+        \item<3-> 想了解原因？私訊我吧
     \end{itemize}
 \end{frame}
 
@@ -262,6 +267,5 @@
         \item \includegraphics[width=10.0cm]{img/code_3.png}
     \end{itemize}
 \end{frame}
-
 
 \end{document}

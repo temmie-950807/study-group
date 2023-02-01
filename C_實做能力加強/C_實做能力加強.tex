@@ -7,6 +7,7 @@
 % ============= setup =============
 \setCJKmainfont{Taipei Sans TC Beta}
 \setCJKsansfont{Taipei Sans TC Beta}
+\setmainfont{Taipei Sans TC Beta}
 \hypersetup{
     colorlinks=true,
     linkcolor=black,
@@ -347,47 +348,31 @@
     \frametitle{區間問題概述}
     \begin{itemize}
         \item 在競程裡面，我們有相當多的問題是有關於「區間」的
-        \item 透過不同的資料結構、演算法，就可以解決這些
-        \item 讓我們試著解決第一道問題
+        \item 通常會有兩個功能「修改」跟「查詢」
+        \item 這次我們會介紹兩個非常常見且基礎的方法
     \end{itemize}
 \end{frame}
 
 \begin{frame}
     \frametitle{例題}
-    \begin{block}{區間和問題ㄧ}
-        給你一個有 $n$ 個正整數的陣列 $arr$\\
-        給予 $q$ 個查詢，每個查詢都有兩個正整數 $L_i$，$R_i$\\
-        對於每個查詢求出 [ $L_i$, $R_i$ ] 的總和\\
+    接下來我們用幾個問題來暖身
 
-        保證 $1 \leq n, q \leq 1000$
-    \end{block}
     \begin{itemize}
-        \item<2-> 這應該滿簡單的，對於每個查詢都直接把所有數字加起來就好
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{例題}
-    \begin{block}{區間和問題二}
-        給你一個有 $n$ 個正整數的陣列 $arr$\\
-        給予 $q$ 個查詢，每個查詢都有兩個正整數 $L_i$，$R_i$\\
-        對於每個查詢求出 [ $L_i$, $R_i$ ] 的總和\\
-
-        保證 $1 \leq n, q \leq 2 \times 10^5$
-    \end{block}
-    \begin{itemize}
-        \item<2-> 和上一題看起來一模一樣，不過範圍變大了
-        \item<2-> 不出意外的話，你應該吃了 TLE
-        \item<3-> 讓我們分析看看問題一的時間複雜度
-        \item<3-> 由於有 q 個查詢，每個查詢都有可能從 $arr_1$ 找到 $arr_n$
-        \item<3-> 時間複雜度是 $O(n \times q)$，在這一題顯然不適用
+        \item<1-> 1+3+2+1+3+2+1+3+3+2+1+2+3
+        \item<2-> 1+3+2+1+3+2+1+3+3+2+1+2+3\textcolor{red}{+5}
+        \item<3-> 1+3+2+1+3+2+1+3+3+2+1+2+3\textcolor{red}{+5+3}
+        \vspace{0.5cm}
+        \item<4-> 4+1+3+\textcolor{blue}{1+3+3+4+3+1+2+1+2}+1
+        \item<5-> 4+\textcolor{blue}{1+3+1+3+3+4+3+1+2}+1+2+1
+        \vspace{0.5cm}
+        \item<6-> 如果一個一個計算是不是很慢呢？讓我們透過一些技巧加速
     \end{itemize}
 \end{frame}
 
 \begin{frame}
     \frametitle{前綴和概念}
     \begin{itemize}
-        \item 前綴和可以處理\textbf{沒有修改，只有查詢}的問題
+        \item 前綴和可以處理\textbf{沒有修改，區間查詢}的問題
         \item 其中每個查詢都可以在 $O(1)$ 完成
         \item 非常非常非常重要的技巧，很常出現
     \end{itemize}
@@ -416,9 +401,10 @@
 \begin{frame}
     \frametitle{前綴和概念}
     \begin{itemize}
-        \item \includegraphics[width=4.5cm]{img/img_8.png}
+        \item \includegraphics[width=4.0cm]{img/img_8.png}
         \item 試著把上面的藍色數值兩兩相減看看，然後觀察他們的性質吧
         \item 如果我想要獲得一個區間的和，該怎麼求得呢？
+        \item 所有藍色的值需要一個一個計算嗎？還是有更快的方法？
     \end{itemize}
 \end{frame}
 
@@ -434,23 +420,43 @@
 \begin{frame}
     \frametitle{前綴和實做}
     \begin{itemize}
-        \item \includegraphics[width=10.0cm]{img/img_9.png}
-        \item 上面這個過程叫做預處理
-        \item 先把陣列建起來，後面的查詢可以用
+        \item \includegraphics[width=9.0cm]{img/img_9.png}
+        \item 上面這個過程叫做預處理，可以看出時間複雜度為 $O(n)$
+        \item 我們定義 $pre_i$ 為 $\displaystyle\sum_{j=0}^{i} a_j$
     \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{例題}
+    \begin{block}{前綴和陣列實作}
+        \href{https://zerojudge.tw/ShowProblem?problemid=e339}{題目連結}\\
+        如題，試著實作出我們剛剛介紹的前綴和陣列
+    \end{block}
 \end{frame}
 
 \begin{frame}
     \frametitle{前綴和實做}
     \begin{itemize}
         \item \includegraphics[width=8.0cm]{img/img_10.png}
-        \item 每次查詢都直接拿陣列裡面的值，時間複雜度為 $O(1)$
+        \item 每次查詢都直接拿陣列裡面的值，時間複雜度為 $O(q)$
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{額外問題}
-    \begin{block}{區間和問題三}
+    \frametitle{例題}
+    \begin{block}{一維區間和問題}
+        \href{https://cses.fi/problemset/task/1646}{題目連結}\\
+        給你一個有 $n$ 個正整數的陣列 $arr$\\
+        給予 $q$ 個查詢，每個查詢都有兩個正整數 $L_i$，$R_i$\\
+        對於每個查詢求出 [ $L_i$, $R_i$ ] 的總和\\
+
+        保證 $1 \leq n, q \leq 2 \times 10^5$
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{例題}
+    \begin{block}{二維區間和問題}
         \href{https://cses.fi/problemset/task/1652}{題目連結}\\
         給你一個 $n \times n$ 大小的森林，森林的每一個座標都是空地或是樹\\
         給予 $q$ 個查詢，每個查詢包含 $y_{1_i}$、$x_{1_i}$、$y_{2_i}$、$x_{2_i}$
@@ -464,14 +470,14 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{額外問題}
+    \frametitle{例題}
     \begin{itemize}
         \item \includegraphics[width=6.0cm]{img/img_11.png}
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{額外問題}
+    \frametitle{例題}
     \begin{itemize}
         \item \includegraphics[width=6.0cm]{img/img_12.png}
         \item 先把最大的問題加起來
@@ -479,7 +485,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{額外問題}
+    \frametitle{例題}
     \begin{itemize}
         \item \includegraphics[width=6.0cm]{img/img_13.png}
         \item 將不需要的範圍刪除
@@ -487,11 +493,88 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{額外問題}
+    \frametitle{例題}
     \begin{itemize}
         \item \includegraphics[width=6.0cm]{img/img_14.png}
         \item 把多刪除的範圍加回去
     \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{例題}
+    \begin{block}{區間 xor 問題}
+        \href{https://cses.fi/problemset/task/1650}{題目連結}\\
+        給你一個有 $n$ 個正整數的陣列 $arr$\\
+        給予 $q$ 個查詢，每個查詢都有兩個正整數 $L_i$，$R_i$\\
+        對於每個查詢求出 [ $L_i$, $R_i$ ] 所有值做 xor 後的值\\
+
+        保證 $1 \leq n, q \leq 2 \times 10^5$
+    \end{block}
+    \begin{itemize}
+        \item 仍然是使用相同的概念，不過 xor 的值要怎麼消除呢？
+        \item tip: $A \oplus A = 0$
+        \item<2-> 我們可以可以做出類似前綴和陣列的東西，不過加的功能變成 xor
+        \item<2-> 在查詢時，也使用 xor 消除
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{例題}
+    \includegraphics[width=10.0cm]{img/img_15.png}
+\end{frame}
+
+\begin{frame}
+    \frametitle{差分概念}
+    \begin{itemize}
+        \item 還記得我們說過前綴和的使用時機嗎？
+        \item 讓我們把問題倒過來，有沒有辦法做到\textbf{區間修改，沒有查詢}
+        \item 比起前綴和，差分的概念較為抽象
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{差分概念}
+    \begin{itemize}
+        \item \includegraphics[width=10.0cm]{img/img_16.png}
+        \item 在差分裡，我們會儲存跟前面數字的差，以方便修改
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{差分概念}
+    \begin{itemize}
+        \item \includegraphics[width=10.0cm]{img/img_17.png}
+        \item 可以透過圖示發現，修改區間的值實際上只會動到兩格
+        \item 因為區間內的值的變化量一樣，所以差一樣（$a-b=(a+x)-(b+x)$）
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{差分概念}
+    \begin{itemize}
+        \item 稍微整理一下，我們會有初始的差分序列
+        \item 每次修改就是對 L 加上 value，而 R+1 加上 -value
+        \item 如果需要尋找一個點的值，則要從左到又加上所有變化量
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{例題}
+    \begin{block}{差分陣列實作}
+        \href{https://zerojudge.tw/ShowProblem?problemid=e340}{題目連結}\\
+        如題，試著實做出我們剛剛介紹的前綴和陣列
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{例題}
+    \begin{block}{疊鬆餅}
+        \href{https://codeforces.com/problemset/problem/1501/B}{題目連結}\\
+        你有 $n$ 個鬆餅需要從底層疊到頂層，每個鬆餅都有一個溼潤度 $a_i$，代表將該鬆餅放置頂層後，會讓底下 $a_i$ 個（包含自己）鬆餅都沾上奶油
+        請你輸出疊完這 $n$ 個鬆餅後哪些鬆餅沾上了奶油\\
+        　\\
+        保證 $1 \leq n \leq 2 \times 10^5$ 且 $0 \leq a_i \leq n$
+    \end{block}
 \end{frame}
 
 \end{document}

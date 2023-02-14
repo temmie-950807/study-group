@@ -1,18 +1,26 @@
-\documentclass{beamer}
+% ============= setup ============= %
+% ======== package ======== %
+\documentclass[mathserif]{beamer}
 \usepackage{xeCJK}
 \usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage{setspace}
+\usepackage{newtxmath}
 
-% ============= setup =============
+% ======== font ======== %
 \setCJKmainfont{Taipei Sans TC Beta}
 \setCJKsansfont{Taipei Sans TC Beta}
-\setmainfont{Taipei Sans TC Beta}
+\AtBeginDocument{%
+    \DeclareSymbolFont{pureletters}{OML}{cmm}{m}{it}%
+    \SetSymbolFont{pureletters}{bold}{OML}{cmm}{b}{it}%
+}
 \hypersetup{
     colorlinks=true,
     linkcolor=black,
     urlcolor=blue
 }
+
+% ======== theme ======== %
 \renewcommand{\baselinestretch}{1.25}
 \usetheme{Madrid}
 \usecolortheme{crane}
@@ -29,10 +37,12 @@
     \end{frame}
 }
 
-\title{實做能力加強}
+% ======== data ======== %
+\title{實作能力加強}
 \author{temmie}
 \date{}
-% ============= setup =============
+
+% ============= setup ============= %
 
 \begin{document}
 
@@ -80,7 +90,7 @@
     \frametitle{十進位轉二進位}
     \begin{itemize}
         \item 詳細作法如下圖
-        \item \includegraphics[width=7.0cm]{img/img_1.png}
+        \item \includegraphics[width=7.0cm]{img/1-1.png}
     \end{itemize}
 \end{frame}
 
@@ -232,7 +242,7 @@
         \item .begin() 代表 vector 裡第一個資料位置
         \item .end() 代表 vector 裡最後一個資料\textbf{的後一位}位置
         \item vec[i] 代表 vector 裡的第 i 個資料
-        \item<2-> \includegraphics[width=8.0cm]{img/img_2.png}
+        \item<2-> \includegraphics[width=8.0cm]{img/3-1.png}
         \item<2-> 要對整個 vector 操作丟 .begin() 跟 .end() 就好了
     \end{itemize}
 \end{frame}
@@ -243,7 +253,7 @@
         \item 以後介紹的函式，除非有特別標注，否則都為以下的方法
         \item 開始都是包含，結束則不包含
         \item 書寫的形式為 [ L, R )
-        \item \includegraphics[width=8.0cm]{img/img_3.png}
+        \item \includegraphics[width=8.0cm]{img/3-2.png}
     \end{itemize}
 \end{frame}
 
@@ -272,23 +282,9 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{vector 的各種常用操作}
-    \begin{itemize}
-        \item $O(n)$，*max\_element({\color[rgb]{1,0,0}L}, {\color[rgb]{1,0,0}R})，取得 [ L, R ) 的最大值
-        \item $O(n)$，*min\_element({\color[rgb]{1,0,0}L}, {\color[rgb]{1,0,0}R})，取得 [ L, R ) 的最小值
-        \item $O(1)$，swap({\color[rgb]{1,0,0}vec1}, {\color[rgb]{1,0,0}vec2})，將 vec1 跟 vec2 對調
-        \item $O(n)$，fill({\color[rgb]{1,0,0}L}, {\color[rgb]{1,0,0}R}, {\color[rgb]{1,0,0}val})，將 [ L, R ) 設為 val
-        \item $O(n \log n)$，sort({\color[rgb]{1,0,0}L}, {\color[rgb]{1,0,0}R})，將 [ L, R ) 排序
-        \vspace{0.5cm}
-        \item 內容很多，以知道有這些功能為主，多練習題目自然就會記起來了
-        \item 特別注意，有些 $O(n)$ 不要用太多次
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
     \frametitle{vector 的遍歷}
     \begin{itemize}
-        \item \includegraphics[width=5.0cm]{img/img_4.png}
+        \item \includegraphics[width=5.0cm]{img/3-3.png}
         \item 其中 x 就會是 vector 裡的所有元素
         \item 想要改值？回想前一節講的吧！
     \end{itemize}
@@ -327,7 +323,7 @@
 \begin{frame}
     \frametitle{二維 vector 的比較}
     \vspace{0.5cm}
-    \includegraphics[width=7.0cm]{img/img_5.png}
+    \includegraphics[width=7.0cm]{img/3-4.png}
 \end{frame}
 
 \begin{frame}
@@ -341,6 +337,164 @@
     \begin{itemize}
         \item<2-> 這題其實就是圖的儲存！我們留到圖論在說
     \end{itemize}
+\end{frame}
+
+\section{常用 STL 函式}
+\begin{frame}
+    \frametitle{STL 是什麼？}
+    \begin{itemize}
+        \item STL 全名為 Standard Template Library
+        \item 是由 C++ 提供的一個標準模板庫
+        \item 我們比較常使用到 STL 中「函式」、「容器」、「迭代器」等部份
+        \vspace{0.5cm}
+        \item STL 容器等到\textbf{資料結構}的課再介紹
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{常用 STL 函式}
+    \begin{itemize}
+        \item fill
+        \item reverse
+        \item swap
+        \item min / max
+        \item min\_elementm / max\_element
+        \item sort
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{fill}
+    \begin{itemize}
+        \item 時間複雜度： \textcolor{red}{\textbf{$O(n)$}}
+        \item fill(\textcolor{red}{L}, \textcolor{red}{R}, \textcolor{red}{val})
+        \item 把 [L, R) 之間的元素都改成 val
+        \vspace{0.5cm}
+        \item 主要用來對容器做初始化
+        \item 要注意時間複雜度，不要使用太多次
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{reverse}
+    \begin{itemize}
+        \item 時間複雜度： \textcolor{red}{\textbf{$O(n)$}}
+        \item reverse(\textcolor{red}{L}, \textcolor{red}{R})
+        \item 把 [L, R) 之間的元素反轉
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{swap}
+    \begin{itemize}
+        \item 時間複雜度： \textcolor{red}{\textbf{$O(n)$}}
+        \item swap(\textcolor{red}{A}, \textcolor{red}{B})
+        \item 把 A 跟 B 裡面的內容對調
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{min / max}
+    \begin{itemize}
+        \item 時間複雜度： $O(1)$
+        \item min(\textcolor{red}{A}, \textcolor{red}{B})
+        \item 回傳 A 跟 B 哪個比較大 / 小
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{min / max（多個元素）}
+    \begin{itemize}
+        \item 最大值跟最小值都有結合律
+        \item 寫法ㄧ：min(A, min(B, C))
+        \item 寫法二：min(\{A, B, C\}) （只支援 C14 以上）
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{min\_elementm / max\_element}
+    \begin{itemize}
+        \item 時間複雜度： \textcolor{red}{\textbf{$O(n)$}}
+        \item min\_elementm(\textcolor{red}{L}, \textcolor{red}{R}, \textcolor{red}{val})
+        \item 回傳 [L, R) 區間的最大值 / 最小值\textbf{的位置}
+        \vspace{0.5cm}
+        \item 如果想要取得實際的值要在前面加上「\textcolor{red}{\textbf{*}}」，如下
+        \item *min\_element(v.begin(), v.end())
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{sort}
+    \begin{itemize}
+        \item 時間複雜度： \textcolor{red}{\textbf{$O(n\ log\ (n))$}}
+        \item sort(\textcolor{red}{L}, \textcolor{red}{R}, \textcolor{red}{val})
+        \item 把 [L, R) 之間的元素由小到大排序
+        \vspace{0.5cm}
+        \item 對區間做排序，這個函式非常常用到！
+        \item 通常排序後的東西會有特殊的性質，這個我們以後再講
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{sort 自訂排序}
+    \begin{itemize}
+        \item 上面提到 sort 是從小到大排，不過我們有沒有辦法從大到小呢？
+        \item 實際上，只要告訴程式一個定義好的比較方式就可以了！
+        \item 例如：如果 a 元素比較大，就放在前面，否則放在後面
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{sort 自訂排序}
+    \begin{itemize}
+        \item 實作方式如下
+        \item \includegraphics[width=9.0cm]{img/4-1.png}
+    \end{itemize}
+\end{frame}
+
+\section{包裝元素}
+
+\begin{frame}
+    \frametitle{為什麼要包裝元素}
+    \begin{itemize}
+        \item 讓我們假想一個問題，教室裡有很多學生，要分別紀錄他們的「名稱」、「座號」跟「各科成績」，該怎麼做？
+        \item<2-> 聽起來很簡單，用三個陣列存資訊就好
+        \item<3-> 如果我需要變動一位學生的順序呢？三個陣列都要修改，好麻煩
+        \item<4-> 把他們打包吧！放在一起就很方便了
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{struct}
+    \begin{itemize}
+        \item struct 是一個可以打包元素並創建一個自訂的型別
+        \item 讓我們看看下面的語法範例：
+        \item \includegraphics[width=7.0cm]{img/5-1.png}
+        \item<2-> 我們宣告了一個型別叫做「student」，並且可以紀錄他的名稱，座號跟各科成績
+        \item<2-> 此外還宣告了一個陣列儲存多個學生的資訊。
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{struct}
+    \begin{itemize}
+        \item 好耶，我們現在有一個自己的型別了，不過有那麼多資料，要怎麼存取呢？
+        \item 可以使用「\textbf{\textcolor{red}{.}}」存取資料
+        \item<2-> 例如：「students[26]」代表「陣列索引值為 26 的同學的所有資訊」
+        \item<2-> 「students[17].id」代表「陣列索引值為 17 的同學的座號」
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{例題}
+    \begin{block}{圖書館小志工}
+        \href{}{題目連結}\\
+        目前書架上有 $n$ 本書，分別叫做 $a_1, a_2 \cdots a_n$\\
+        每本書紀錄著「書名」、「分類」、「編號」\\
+        .\\
+        現在給你 $m$ 個操作，每次操作會把 $a_x$ 跟 $a_y$ 交換\\
+        請求出書架最後的狀態
+    \end{block}
 \end{frame}
 
 \section{區間問題}
@@ -382,7 +536,7 @@
 \begin{frame}
     \frametitle{前綴和概念}
     \begin{itemize}
-        \item \includegraphics[width=3.0cm]{img/img_6.png}
+        \item \includegraphics[width=3.0cm]{img/6-1.png}
         \item 上圖的藍色區域怎麼算呢？
         \item<2-> 只要算出正方形的面積，並且減去扇形，即可求解
         \item<2-> 讓我們看看這個概念放到陣列上會變成怎樣
@@ -392,7 +546,7 @@
 \begin{frame}
     \frametitle{前綴和概念}
     \begin{itemize}
-        \item \includegraphics[width=8.0cm]{img/img_7.png}
+        \item \includegraphics[width=8.0cm]{img/6-2.png}
         \item 我們可以算出所有數字的總和，然後扣除灰色的部份
         \item<2-> 嗯？這樣應該算的數字更多，因此更慢不是嗎？
         \item<2-> 實際上，我們可以儲存這些數字，要用時再扣除，這樣就很快啦！
@@ -402,7 +556,7 @@
 \begin{frame}
     \frametitle{前綴和概念}
     \begin{itemize}
-        \item \includegraphics[width=4.0cm]{img/img_8.png}
+        \item \includegraphics[width=4.0cm]{img/6-3.png}
         \item 試著把上面的藍色數值兩兩相減看看，然後觀察他們的性質吧
         \item 如果我想要獲得一個區間的和，該怎麼求得呢？
         \item 所有藍色的值需要一個一個計算嗎？還是有更快的方法？
@@ -421,7 +575,7 @@
 \begin{frame}
     \frametitle{前綴和實做}
     \begin{itemize}
-        \item \includegraphics[width=9.0cm]{img/img_9.png}
+        \item \includegraphics[width=9.0cm]{img/6-4.png}
         \item 上面這個過程叫做預處理，可以看出時間複雜度為 $O(n)$
         \item 我們定義 $pre_i$ 為 $\displaystyle\sum_{j=0}^{i} a_j$
     \end{itemize}
@@ -438,7 +592,7 @@
 \begin{frame}
     \frametitle{前綴和實做}
     \begin{itemize}
-        \item \includegraphics[width=8.0cm]{img/img_10.png}
+        \item \includegraphics[width=8.0cm]{img/6-5.png}
         \item 每次查詢都直接拿陣列裡面的值，時間複雜度為 $O(q)$
     \end{itemize}
 \end{frame}
@@ -473,14 +627,14 @@
 \begin{frame}
     \frametitle{例題}
     \begin{itemize}
-        \item \includegraphics[width=6.0cm]{img/img_11.png}
+        \item \includegraphics[width=6.0cm]{img/6-6.png}
     \end{itemize}
 \end{frame}
 
 \begin{frame}
     \frametitle{例題}
     \begin{itemize}
-        \item \includegraphics[width=6.0cm]{img/img_12.png}
+        \item \includegraphics[width=6.0cm]{img/6-7.png}
         \item 先把最大的問題加起來
     \end{itemize}
 \end{frame}
@@ -488,7 +642,7 @@
 \begin{frame}
     \frametitle{例題}
     \begin{itemize}
-        \item \includegraphics[width=6.0cm]{img/img_13.png}
+        \item \includegraphics[width=6.0cm]{img/6-8.png}
         \item 將不需要的範圍刪除
     \end{itemize}
 \end{frame}
@@ -496,7 +650,7 @@
 \begin{frame}
     \frametitle{例題}
     \begin{itemize}
-        \item \includegraphics[width=6.0cm]{img/img_14.png}
+        \item \includegraphics[width=6.0cm]{img/6-9.png}
         \item 把多刪除的範圍加回去
     \end{itemize}
 \end{frame}
@@ -521,7 +675,7 @@
 
 \begin{frame}
     \frametitle{例題}
-    \includegraphics[width=10.0cm]{img/img_15.png}
+    \includegraphics[width=10.0cm]{img/6-10.png}
 \end{frame}
 
 \begin{frame}
@@ -536,7 +690,7 @@
 \begin{frame}
     \frametitle{差分概念}
     \begin{itemize}
-        \item \includegraphics[width=10.0cm]{img/img_16.png}
+        \item \includegraphics[width=10.0cm]{img/6-11.png}
         \item 在差分裡，我們會儲存跟前面數字的差，以方便修改
     \end{itemize}
 \end{frame}
@@ -544,7 +698,7 @@
 \begin{frame}
     \frametitle{差分概念}
     \begin{itemize}
-        \item \includegraphics[width=10.0cm]{img/img_17.png}
+        \item \includegraphics[width=10.0cm]{img/6-12.png}
         \item 可以透過圖示發現，修改區間的值實際上只會動到兩格
         \item 因為區間內的值的變化量一樣，所以差一樣（$a-b=(a+x)-(b+x)$）
     \end{itemize}

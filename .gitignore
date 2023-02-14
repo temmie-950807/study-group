@@ -9,6 +9,6 @@
 *.toc
 *.xdv
 
+.gitignore
 main.cpp
-TODO.md
 template.tex

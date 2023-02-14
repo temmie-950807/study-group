@@ -1,18 +1,26 @@
-\documentclass{beamer}
+% ============= setup ============= %
+% ======== package ======== %
+\documentclass[mathserif]{beamer}
 \usepackage{xeCJK}
 \usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage{setspace}
+\usepackage{newtxmath}
 
-% ============= setup =============
+% ======== font ======== %
 \setCJKmainfont{Taipei Sans TC Beta}
 \setCJKsansfont{Taipei Sans TC Beta}
-\setmainfont{Taipei Sans TC Beta}
+\AtBeginDocument{%
+    \DeclareSymbolFont{pureletters}{OML}{cmm}{m}{it}%
+    \SetSymbolFont{pureletters}{bold}{OML}{cmm}{b}{it}%
+}
 \hypersetup{
     colorlinks=true,
     linkcolor=black,
     urlcolor=blue
 }
+
+% ======== theme ======== %
 \renewcommand{\baselinestretch}{1.25}
 \usetheme{Madrid}
 \usecolortheme{crane}
@@ -29,10 +37,12 @@
     \end{frame}
 }
 
-\title{title}
+% ======== data ======== %
+\title{}
 \author{temmie}
 \date{}
-% ============= setup =============
+
+% ============= setup ============= %
 
 \begin{document}
 

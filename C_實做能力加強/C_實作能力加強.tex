@@ -200,7 +200,7 @@
     \end{itemize}
 \end{frame}
 
-\section{vector}
+\section{陣列運用}
 
 \begin{frame}
     \frametitle{陣列運用}
@@ -336,6 +336,60 @@
     \end{block}
     \begin{itemize}
         \item<2-> 這題其實就是圖的儲存！我們留到圖論在說
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{陣列運用 — 計數}
+    \begin{itemize}
+        \item 要快速獲得一個元素出現的數量，可以直接在陣列儲存該值的數量
+        \item 修改元素也可以快速的計算！
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{例題}
+    \begin{block}{數對問題-1}
+        請找出長度為 $n$ 的陣列裡有多少數對 ($arr_i, arr_j$) 的和為 $m$
+        \vspace{0.5cm}
+        \begin{itemize}
+            \item $1 \leq n \leq 10^5$
+            \item $0 \leq m \leq 10^5$
+            \item $0 \leq arr_i \leq m$
+        \end{itemize}
+    \end{block}
+
+    \begin{itemize}
+        \item<2-> 暴力求解？ $O(n^2)$ 會 TLE
+        \item<3-> 移項 $arr_i+arr_j=m \rightarrow arr_i=m-arr_j$
+        \item<3-> 對於每個 $arr_i$ 只要找 $m-arr_j$ 的數量即可，$O(n)$ 即可得到答案
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{例題}
+    \begin{block}{Missing Number}
+        請找出長度為 $1 \sim n$ 中的 $n-1$ 個數字，請找出少了哪個。
+        \vspace{0.5cm}
+        \begin{itemize}
+            \item $2 \leq n \leq 2 \times 10^5$
+        \end{itemize}
+    \end{block}
+
+    \begin{itemize}
+        \item<2-> 用一個陣列儲存一個數字是否出現過
+        \item<2-> 掃過 $1 \sim n$ 即可知道哪個沒有出現過
+        \item<3-> 你能想到不用陣列的解法嗎？
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{限制}
+    \begin{itemize}
+        \item 上面的兩個問題數字都很小，都可以用陣列儲存
+        \item 如果數字變大呢？以後會有更多方式解決！（map、離散化…）
+        \item<2-> 不過\textbf{更大的數字會犧牲掉時間複雜度}
+        \item<2-> 如果能用陣列解決就用陣列
     \end{itemize}
 \end{frame}
 

@@ -1,0 +1,108 @@
+% ============= setup ============= %
+% ======== package ======== %
+\documentclass[mathserif]{beamer}
+\usepackage{xeCJK}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{setspace}
+\usepackage{newtxmath}
+
+% ======== font ======== %
+\setCJKmainfont{Taipei Sans TC Beta}
+\setCJKsansfont{Taipei Sans TC Beta}
+\AtBeginDocument{%
+    \DeclareSymbolFont{pureletters}{OML}{cmm}{m}{it}%
+    \SetSymbolFont{pureletters}{bold}{OML}{cmm}{b}{it}%
+}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue
+}
+
+% ======== theme ======== %
+\renewcommand{\baselinestretch}{1.25}
+\usetheme{Madrid}
+\usecolortheme{crane}
+\setbeamertemplate{items}[circle]
+\setbeamertemplate{section in toc}{\inserttocsectionnumber.~\inserttocsection}
+\AtBeginSection[]{
+    \begin{frame}
+        \vfill
+        \centering
+        \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+            \usebeamerfont{title}\insertsectionhead\par%
+        \end{beamercolorbox}
+        \vfill
+    \end{frame}
+}
+
+% ======== data ======== %
+\title{二分搜尋}
+\author{temmie}
+\date{}
+
+% ============= setup ============= %
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}
+    \tableofcontents
+\end{frame}
+
+\section{二分搜簡介}
+
+\begin{frame}
+    \frametitle{二分搜簡介}
+    \begin{itemize}
+        \item 讓我們試試看玩終極密碼 :D
+        \item<2-> 事實上，我們就是在做\textbf{搜尋答案}這件事情
+        \item<2-> 我們總共搜尋了多少次？這樣的時間複雜度是多少呢？
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{二分搜方法}
+    \begin{itemize}
+        \item 既然答案有可能在任何地方，那就中間切一刀吧！
+        \item 這樣一定是最好，因為兩邊的機率都會是一半
+        \item 二分搜就是\textbf{將資料切半，看答案在哪一邊}
+        \item 時間複雜度是 $O(log_2\ n)$ ，因為每次資料量都會減少一半
+    \end{itemize}
+
+\end{frame}
+
+\section{尋找元素}
+
+\begin{frame}
+    \frametitle{例題}
+    \begin{block}{搜尋例題}
+        \href{https://codeforces.com/edu/course/2/lesson/6/1/practice/contest/283911/problem/A}{題目連結}
+        給你 $n$ 個\textbf{排序後}的元素 $a_1, a_2 \cdots a_n$\\
+        對於 $q$ 個查詢 $q_i$，輸出是否存在上面元素中
+        \vspace{0.5cm}
+        \begin{itemize}
+            \item $1 \leq n, q \leq 10^5$
+            \item $0 \leq \mid a_i, q_i \mid \leq 10^9$
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{搜尋法}
+    \begin{itemize}
+        \item 還記得我們第一堂課的找書嗎？
+        \item 如果硬找的話，時間複雜度會是 $O(n \times q)$，會 TLE
+        \item<2-> 
+    \end{itemize}
+\end{frame}
+
+\section{搜尋數值}
+
+\section{搜尋答案}
+
+\end{document}

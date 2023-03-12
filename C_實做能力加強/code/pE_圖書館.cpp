@@ -16,7 +16,7 @@ int main(){
     // process
     for (int i=0 ; i<n ; i++){
         cin >> a >> b;
-        if (b>100){
+        if (b>100){ // 如果書是過期的
             v.push_back(a);
             total+=(b-100)*5;
         }

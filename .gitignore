@@ -8,7 +8,6 @@
 *.synctex.gz
 *.toc
 *.xdv
-0_企劃書/
 
 .gitignore
 main.cpp

@@ -3,6 +3,7 @@
 \usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage{setspace}
+\usepackage{ulem}
 
 % ============= setup =============
 \setCJKmainfont{Taipei Sans TC Beta}
@@ -127,8 +128,10 @@
     \end{itemize}
 \end{frame}
 
+\section{位元枚舉}
+
 \begin{frame}
-    \frametitle{例題}
+    \frametitle{位元枚舉}
     \begin{block}{全排列枚舉}
         \href{https://cses.fi/problemset/task/1623}{題目連結}\\
         給你 $n$ 個蘋果，每個重量為 $p_i$，請問該怎麼分成兩組讓它們重量差最小\\
@@ -146,8 +149,6 @@
         \item<2-> \includegraphics[width=7.0cm]{img/img_3.png}
     \end{itemize}
 \end{frame}
-
-\section{位元枚舉}
 
 \begin{frame}
     \frametitle{位元枚舉}
@@ -214,6 +215,36 @@
     \frametitle{位元枚舉}
     \begin{itemize}
         \item \includegraphics[width=5.0cm]{img/img_10.png}
+    \end{itemize}
+\end{frame}
+
+\section{遞迴枚舉}
+
+\begin{frame}
+    \frametitle{遞迴枚舉}
+    \begin{itemize}
+        \item 位元枚舉只能處理分成兩組的情況
+        \item 如果要分成三組呢？
+        \vspace{0.5cm}
+        \item<2-> \sout{手刻三進位}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{遞迴枚舉}
+    \begin{itemize}
+        \item 位元枚舉只能處理分成兩組的情況
+        \item 如果要分成三組呢？
+        \vspace{0.5cm}
+        \item<2-> \sout{手刻三進位}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{遞迴枚舉}
+    \begin{itemize}
+        \item 我們可以透過遞迴去枚舉每個元素
+        \item \includegraphics[width=10.0cm]{img/img_11.png}
     \end{itemize}
 \end{frame}
 

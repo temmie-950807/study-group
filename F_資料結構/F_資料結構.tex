@@ -1,0 +1,85 @@
+% ============= setup ============= %
+% ======== package ======== %
+\documentclass[mathserif]{beamer}
+\usepackage{xeCJK}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{setspace}
+\usepackage{newtxmath}
+
+% ======== font ======== %
+\setCJKmainfont{Taipei Sans TC Beta}
+\setCJKsansfont{Taipei Sans TC Beta}
+\AtBeginDocument{%
+    \DeclareSymbolFont{pureletters}{OML}{cmm}{m}{it}%
+    \SetSymbolFont{pureletters}{bold}{OML}{cmm}{b}{it}%
+}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue
+}
+
+% ======== theme ======== %
+\renewcommand{\baselinestretch}{1.25}
+\usetheme{Madrid}
+\usecolortheme{crane}
+\setbeamertemplate{items}[circle]
+\setbeamertemplate{section in toc}{\inserttocsectionnumber.~\inserttocsection}
+\AtBeginSection[]{
+    \begin{frame}
+        \vfill
+        \centering
+        \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+            \usebeamerfont{title}\insertsectionhead\par%
+        \end{beamercolorbox}
+        \vfill
+    \end{frame}
+}
+
+% ======== data ======== %
+\title{資料結構}
+\author{temmie}
+\date{}
+
+% ============= setup ============= %
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}
+    \tableofcontents
+\end{frame}
+
+\begin{frame}{堆疊：Stack}
+    \begin{itemize}
+        \item 一種後進先出 (Last-In-First-Out, LIFO) 的線性資料結構
+        \item 和疊盤子一樣，要放只能疊上去，要拿只能從最上面拿
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{堆疊：Stack}
+    使用時機：
+    \begin{itemize}
+        \item 消除元素 （括號序列）
+        \item 單調堆疊 （stack 裡的東西保持單調性）
+        \item 四則運算解析
+        \item 模擬遞迴
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{堆疊：Stack}
+    STL 中現成的工具：
+    \begin{itemize}
+        \item 消除元素 （括號序列）
+        \item 單調堆疊 （stack 裡的東西保持單調性）
+        \item 四則運算解析
+        \item 模擬遞迴
+    \end{itemize}
+\end{frame}
+
+
+\end{document}

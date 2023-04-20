@@ -54,14 +54,16 @@
     \tableofcontents
 \end{frame}
 
-\begin{frame}{堆疊：Stack}
+\section{Stack}
+
+\begin{frame}{Stack}
     \begin{itemize}
         \item 一種後進先出 (Last-In-First-Out, LIFO) 的線性資料結構
         \item 和疊盤子一樣，要放只能疊上去，要拿只能從最上面拿
     \end{itemize}
 \end{frame}
 
-\begin{frame}{堆疊：Stack}
+\begin{frame}{Stack}
     使用時機：
     \begin{itemize}
         \item 消除元素 （括號序列）
@@ -71,15 +73,301 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{堆疊：Stack}
-    STL 中現成的工具：
+\begin{frame}{Stack}
+    現成的工具：
     \begin{itemize}
-        \item 消除元素 （括號序列）
-        \item 單調堆疊 （stack 裡的東西保持單調性）
-        \item 四則運算解析
-        \item 模擬遞迴
+        \item stack<{\color{red}type}> {\color{red}name}
+        \begin{itemize}
+            \item .push({\color{red}val})
+            \item .pop()
+            \item .top()
+            \item .size()
+            \item .empty()
+        \end{itemize}
     \end{itemize}
 \end{frame}
 
+\section{Queue}
+
+\begin{frame}{Queue}
+    \begin{itemize}
+        \item 一種先進先出 (First-In-First-Out, FIFO) 的線性資料結構
+        \item 和排隊一樣，無法插隊，先到先走
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Queue}
+    使用時機：
+    \begin{itemize}
+        \item BFS
+        \item 只需要動到頭尾
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Queue}
+    現成的工具：
+    \begin{itemize}
+        \item queue<{\color{red}type}> {\color{red}name}
+        \begin{itemize}
+            \item .push({\color{red}val})
+            \item .pop()
+            \item .front()
+            \item .back()
+            \item .size()
+            \item .empty()
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\section{Deque}
+
+\begin{frame}{Deque}
+    \begin{itemize}
+        \item 簡單來說就是 Stack + Queue
+        \item \textbf{常數非常大}，如非必要就不要使用
+        \item 可以自己用陣列實作
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Deque}
+    現成的工具：
+    \begin{itemize}
+        \item deque<{\color{red}type}> {\color{red}name}
+        \begin{itemize}
+            \item .push\_front({\color{red}val})
+            \item .push\_back({\color{red}val})
+            \item .pop\_front()
+            \item .pop\_back()
+            \item .front()
+            \item .back()
+            \item .size()
+            \item .empty()
+            \item .clear()
+            \item {\color{red}name}[{\color{red}i}]
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\section{Priority\_queue}
+
+\begin{frame}{Priority\_queue}
+    \begin{itemize}
+        \item 一個可以自動排序的 Queue，但實際上是樹狀結構
+        \item 會讓 Queue 由大到小（或是相反）排序
+        \item 比起我們待會會講的 Set / Multiset 還要快
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Priority\_queue}
+    使用時機：
+    \begin{itemize}
+        \item 解決貪心問題
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Priority\_queue}
+    現成的工具：
+    \begin{itemize}
+        \item priority\_queue<{\color{red}type}>: 由大到小
+        \item priority\_queue<{\color{red}type}, vector<{\color{red}type}>, greater<{\color{red}type}> >: 由小到大
+        \item .push({\color{red}val})
+        \item .pop()
+        \item .top()
+        \item .size()
+        \item .empty()
+    \end{itemize}
+\end{frame}
+
+\section{Pair}
+
+\begin{frame}{Pair}
+    \begin{itemize}
+        \item 和我們之前學的 Struct 一樣
+        \item 只有兩個空間，前面叫做 first 後面叫做 second
+        \item 如果不想用 Struct 就可以用 Pair
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Priority\_queue}
+    現成的工具：
+    \begin{itemize}
+        \item pair<{\color{red}type1}, {\color{red}type2}>，兩個元素
+        \item pair<{\color{red}type1}, pair<{\color{red}type2}, {\color{red}type3}> >，三個元素
+        \item .first
+        \item .second
+    \end{itemize}
+\end{frame}
+
+\section{Set}
+
+\begin{frame}{Set}
+    \begin{itemize}
+        \item 一種平衡二元樹，可以先忽略實作方法
+        \item 使用時機非常多，不單單只是做為「集合」使用
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Set}
+    使用時機：
+    \begin{itemize}
+        \item 去重
+        \item 動態排序（動態做二分搜能做的事）
+        \item 快速知道前/後一個元素為何
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Set}
+    現成的工具：
+    \begin{itemize}
+        \item set<{\color{red}type}> {\color{red}name}
+        \item .begin()
+        \item .end()
+        \item .find({\color{red}val})，return iterator
+        \item .size()
+        \item .empty()
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Set}
+    現成的工具：
+    \begin{itemize}
+        \item .insert({\color{red}val})，return pair<iterator, bool>
+        \begin{itemize}
+            \item $O(\log{n})$
+            \item iterator 為插入的位置
+            \item bool 為是否插入成功（如果已經存在就回傳 False）
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Set}
+    現成的工具：
+    \begin{itemize}
+        \item .erase({\color{red}iterator})，return iterator
+        \\.erase({\color{red}iterator\_left}, {\color{red}iterator\_right})，return iterator
+        \\.erase({\color{red}val})，return bool
+        \begin{itemize}
+            \item $O(\log{n})$
+            \item 傳入 iterator，則回傳下個元素的 iterator
+            \item 傳入數值，則回傳有是否被刪除
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Set}
+    現成的工具：
+    \begin{itemize}
+        \item upper\_bound / lower\_bound({\color{red}val})，return iterator
+        \begin{itemize}
+            \item $O(\log{n})$
+            \item iterator 為找到的位置
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Unordered\_set}
+    \begin{itemize}
+        \item 和 set 差不多，但是不會有排序功能
+        \item insert 和 erase 變成 $O(1)$
+        \item 通常會用在一個叫做\textbf{雜湊}的技巧
+    \end{itemize}
+\end{frame}
+
+\section{Multiset}
+\begin{frame}{Multiset}
+    \begin{itemize}
+        \item 和 set 差不多，但沒有去重的功能
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Multiset}
+    現成的工具：
+    \begin{itemize}
+        \item .insert({\color{red}val})，return iterator
+        \begin{itemize}
+            \item $O(\log{n})$
+            \item iterator 為插入的位置
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Multiset}
+    現成的工具：
+    \begin{itemize}
+        \item .erase({\color{red}iterator})，return iterator
+        \\.erase({\color{red}iterator\_left}, {\color{red}iterator\_right})，return iterator
+        \\.erase({\color{red}val})，return bool
+        \begin{itemize}
+            \item $O(\log{n})$
+            \item 傳入 iterator，則回傳下個元素的 iterator
+            \item 傳入數值，則\textbf{所有和該數值相同的都會被刪除}
+            \item 如果只想要刪除一個則使用 .erase(.find({\color{red}val}))
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Multiset}
+    現成的工具：
+    \begin{itemize}
+        \item .count({\color{red}val})，return int
+        \begin{itemize}
+            \item $O($元素個數$)$
+            \item 回傳元素個數，時間複雜度\textbf{與元素個數成正比}，因此不該使用 Multiset 計算元素數量
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\section{Map}
+
+\begin{frame}{Map}
+    \begin{itemize}
+        \item Map 有「映照」的意思，也就是將 key 對照成 value
+        \item 同樣是以樹狀結構實作
+        \item 同樣有自動排序
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Map}
+    使用時機：
+    \begin{itemize}
+        \item 沒辦法用陣列的索引值儲存
+        \item 將資料做對應
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Map}
+    注意事項：
+    \begin{itemize}
+        \item Map 的 iterator 都是指向一個 pair，前者是 Key，後者是 Value
+        \item 不要資料結構上癮，\textbf{如果索引值較小就應該用陣列}
+        \item 在尋找元素之前，應該先確保該元素存在（用 .find 檢查），否則會因為該位置被初始化而導致時間複雜度爛掉
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Map}
+    現成的工具：
+    \begin{itemize}
+        \item map<{\color{red}type1}, {\color{red}type2}> {\color{red}name}
+        \item .begin()
+        \item .end()
+        \item .find({\color{red}val}) return iterator
+        \item .size()
+        \item .empty()
+        \item {\color{red}name} [{\color{red}key}]
+    \end{itemize}
+\end{frame}
+
+\section{雜項}
+
+\begin{frame}{雜項}
+    以下是我沒講到的，它們出場率很低
+    \begin{itemize}
+        \item Tuple
+        \item Unordered\_map
+        \item List
+    \end{itemize}
+\end{frame}
+
+\section{題目}
 
 \end{document}

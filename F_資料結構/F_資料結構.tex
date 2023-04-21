@@ -357,6 +357,41 @@
     \end{itemize}
 \end{frame}
 
+\section{Bitset}
+
+\begin{frame}{Bitset}
+    \begin{itemize}
+        \item 比起 bool[]，是以精確的 bit 來實作，空間少上許多
+        \item 做位元運算超快，甚至可以快到 $\frac{1}{64}$ 倍
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Bitset}
+    使用時機：
+    \begin{itemize}
+        \item 需要儲存 01 的資料
+        \item 大量用到位元運算
+        \item 壓常數
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Bitset}
+    現成的工具：
+    \begin{itemize}
+        \item bitset<{\color{red}固定大小}> {\color{red}name}
+        \item .count()
+        \item .size()
+        \item .all()
+        \item .any()
+        \item .set()
+        \item .reset()
+        \item .to\_string()
+        \item .to\_ulong()
+        \item .to\_ullong()
+        \item {\color{red}name} [{\color{red}key}]
+    \end{itemize}
+\end{frame}
+
 \section{雜項}
 
 \begin{frame}{雜項}
@@ -369,5 +404,18 @@
 \end{frame}
 
 \section{題目}
+
+\begin{frame}{題目}
+    \begin{itemize}
+        \item \href{https://atcoder.jp/contests/agc005/tasks/agc005_a}{STring}
+        \item \href{https://codeforces.com/contest/612/problem/C}{括號配對}
+        \item \href{https://cses.fi/problemset/task/1645}{最近較小數字}
+        \item \href{https://atcoder.jp/contests/abc247/tasks/abc247_d}{儲存站}
+        \item \href{https://atcoder.jp/contests/abc237/tasks/abc237_d}{LR 排列}
+        \item \href{https://cses.fi/problemset/task/1161/}{木棒組合}
+        \item \href{https://codeforces.com/group/H0qY3QmnOW/contest/333897/problem/H}{藤原千花與字串}
+        \item \href{https://atcoder.jp/contests/abc217/tasks/abc217_d}{木棒切割}
+    \end{itemize}
+\end{frame}
 
 \end{document}

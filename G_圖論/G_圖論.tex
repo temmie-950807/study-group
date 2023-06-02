@@ -306,16 +306,74 @@ void dfs(int x, int y){
 \end{lstlisting}
 \end{frame}
 
+\section{BFS}
+
+\begin{frame}{BFS}
+    \begin{itemize}
+        \item 深度優先搜尋（Breadth-First-Search，BFS），一種遍歷圖的方法
+        \item 同樣地，會以廣度為最優先的順序。
+        \item 步驟如下
+            \begin{enumerate}
+                \itemsep=5pt
+                \item 選擇起點當作目前的節點，\textbf{紀錄走過}後將處理順序設為 1
+                \item 紀錄目前的節點走過
+                \item 將所有相鄰節點依序紀錄處理順序後，\textbf{並直接紀錄走過}
+                \item 尋找下一個處理順序的節點
+                \item 如果所有節點都走過就結束，否則重複第二步驟
+            \end{enumerate}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{比較}
+    \begin{itemize}
+        \item DFS 跟 BFS 都可以遍歷整張圖
+        \item DFS 相對更好實作，也比較方便一些動態規劃的題目
+        \item BFS 比較難實作一些，不過擁有了\textbf{最短路}的性質
+    \end{itemize}
+\end{frame}
+
 \section{回朔解}
 
 \begin{frame}{回朔解}
     \begin{itemize}
         \item 在一些問題中，題目將會要求構造出一種解法。
         \item 這個問題我們可以透過\textbf{逆推}達成。
+        \item 也就是紀錄\textbf{這個結果是由誰推過來的}
     \end{itemize}
-
 \end{frame}
 
-\section{BFS}
+\begin{frame}{例題}
+    \begin{block}{CLabyrinth}
+        \href{https://cses.fi/problemset/task/1193}{題目連結}
+
+        給你一個大小為 $n \times m$ 的房間，\textbf{＠} 代表為地板，\textbf{＃} 代表為牆壁，在一個地板上可以上下左右走向另一個地板，並且給予一個點 \textbf{A} 代表起點，\textbf{B} 代表終點。\\
+        \vspace{1em}
+        請判斷是否有辦法從起點走向終點，如果可以，則輸出 \textbf{"Yes"}，並且輸出\textbf{最短路徑長度}以及用 \textbf{LRUD} 代表\textbf{左右上下}構造一任意一組解。
+    \end{block}
+    \begin{itemize}
+        \item<2-> Tip1：怎麼知道是否有辦法從起點走到終點？
+        \item<3-> Tip2：如果是最短路徑，那們要用 DFS 還是 BFS ？
+        \item<4-> Tip3：如果知道 $A$ 是從 $B$ 轉移的話，要怎麼紀錄資訊進行反推？
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{例題}
+\begin{lstlisting}[language=C++, caption={}]
+int parent[1005][1005];
+
+void dfs(int x, int y){
+    vis[x][y]=1;
+    for (int i=0 ; i<4 ; i++){
+        if (out(x+mx[i], y+my[i])==0 &&
+        v[x+mx[i]][y+my[i]]=='.'){
+            
+            dfs(x+mx[i], y+my[i]);
+        }
+    }
+    return;
+}
+\end{lstlisting}
+\end{frame}
+
 
 \end{document}

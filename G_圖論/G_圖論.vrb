@@ -1,0 +1,16 @@
+\frametitle{例題}
+\begin{lstlisting}[language=C++, caption={}]
+int parent[1005][1005];
+
+void dfs(int x, int y){
+    vis[x][y]=1;
+    for (int i=0 ; i<4 ; i++){
+        if (out(x+mx[i], y+my[i])==0 &&
+        v[x+mx[i]][y+my[i]]=='.'){
+
+            dfs(x+mx[i], y+my[i]);
+        }
+    }
+    return;
+}
+\end{lstlisting}

@@ -62,7 +62,7 @@
 }
 
 % ======== data ======== %
-\title{資料結構}
+\title{圖論}
 \author{temmie}
 \date{}
 
@@ -238,7 +238,7 @@ vector<int> ans;
 
 for (int i=1 ; i<=n ; i++){
     // 一個城市還沒被遍歷，就記錄他並且走過所有跟他連通的城市
-    if (vis[i]){
+    if (vis[i]==0){
         ans.push_back(i);
         dfs(i);
     }
@@ -324,6 +324,27 @@ void dfs(int x, int y){
     \end{itemize}
 \end{frame}
 
+\begin{frame}[fragile]{實作：BFS}
+\begin{lstlisting}[language=C++, caption={}]
+queue<int> qq; // 記錄現在的順序
+
+qq.push(1); // 將第一個點先丟進 queue 裡面
+vis[1];
+while (qq.size()){ // 如果還有待處理的點就繼續
+    int now=qq.front(); // 取得目前要處理的點
+    qq.pop();
+
+    for (auto x : G[now]){
+        if (vis[x]==0){
+            vis[x]=1; // 請務必先紀錄走過
+            qq.push(x);
+        }
+    }
+}
+
+\end{lstlisting}
+\end{frame}
+
 \begin{frame}{比較}
     \begin{itemize}
         \item DFS 跟 BFS 都可以遍歷整張圖
@@ -343,12 +364,13 @@ void dfs(int x, int y){
 \end{frame}
 
 \begin{frame}{例題}
-    \begin{block}{CLabyrinth}
-        \href{https://cses.fi/problemset/task/1193}{題目連結}
+    \begin{block}{Message Route}
+        \href{https://cses.fi/problemset/task/1667}{題目連結}
+        
+        給你 $n$ 台電腦以及 $m$ 條網路，請判斷第 $1$ 和 $n$ 台電腦是否有連接。\\
 
-        給你一個大小為 $n \times m$ 的房間，\textbf{＠} 代表為地板，\textbf{＃} 代表為牆壁，在一個地板上可以上下左右走向另一個地板，並且給予一個點 \textbf{A} 代表起點，\textbf{B} 代表終點。\\
         \vspace{1em}
-        請判斷是否有辦法從起點走向終點，如果可以，則輸出 \textbf{"Yes"}，並且輸出\textbf{最短路徑長度}以及用 \textbf{LRUD} 代表\textbf{左右上下}構造一任意一組解。
+        是的話請輸出兩台電腦之間的最短路徑，並構造出一組解，否則輸出\texttt{IMPOSSIBLE}。
     \end{block}
     \begin{itemize}
         \item<2-> Tip1：怎麼知道是否有辦法從起點走到終點？
@@ -359,21 +381,53 @@ void dfs(int x, int y){
 
 \begin{frame}[fragile]{例題}
 \begin{lstlisting}[language=C++, caption={}]
-int parent[1005][1005];
+int parent[100000+5]; // 紀錄第 i 點是由誰轉移而來
 
-void dfs(int x, int y){
-    vis[x][y]=1;
-    for (int i=0 ; i<4 ; i++){
-        if (out(x+mx[i], y+my[i])==0 &&
-        v[x+mx[i]][y+my[i]]=='.'){
-            
-            dfs(x+mx[i], y+my[i]);
-        }
-    }
-    return;
+int now=n;
+vector<int> ans;
+
+while (now!=1){
+    ans.push_back(now);
+    now=parent[now]; // 將目前的點設成他的父節點
 }
+ans.push_back(1);
+reverse(ans.begin(), ans.end());
+// 答案是 "逆推" 獲得，因此最後要反轉
 \end{lstlisting}
 \end{frame}
+
+\begin{frame}{例題}
+    \begin{block}{CLabyrinth}
+        \href{https://cses.fi/problemset/task/1193}{題目連結}
+
+        給你一個大小為 $n \times m$ 的房間，\textbf{＠} 代表為地板，\textbf{＃} 代表為牆壁，在一個地板上可以上下左右走向另一個地板，並且給予一個點 \textbf{A} 代表起點，\textbf{B} 代表終點。\\
+        \vspace{1em}
+        請判斷是否有辦法從起點走向終點，如果可以，則輸出 \textbf{"Yes"}，並且輸出\textbf{最短路徑長度}以及用 \textbf{LRUD} 代表\textbf{左右上下}構造一任意一組解。
+    \end{block}
+    % \begin{itemize}
+    %     \item<2-> Tip1：怎麼知道是否有辦法從起點走到終點？
+    %     \item<3-> Tip2：如果是最短路徑，那們要用 DFS 還是 BFS ？
+    %     \item<4-> Tip3：如果知道 $A$ 是從 $B$ 轉移的話，要怎麼紀錄資訊進行反推？
+    % \end{itemize}
+\end{frame}
+
+% \begin{frame}[fragile]{例題}
+% \begin{lstlisting}[language=C++, caption={}]
+% int parent[1005][1005];
+
+% void dfs(int x, int y){
+%     vis[x][y]=1;
+%     for (int i=0 ; i<4 ; i++){
+%         if (out(x+mx[i], y+my[i])==0 &&
+%         v[x+mx[i]][y+my[i]]=='.'){
+            
+%             dfs(x+mx[i], y+my[i]);
+%         }
+%     }
+%     return;
+% }
+% \end{lstlisting}
+% \end{frame}
 
 
 \end{document}

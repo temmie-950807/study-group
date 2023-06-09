@@ -1,16 +1,15 @@
 \frametitle{例題}
 \begin{lstlisting}[language=C++, caption={}]
-int parent[1005][1005];
+int parent[100000+5]; // 紀錄第 i 點是由誰轉移而來
 
-void dfs(int x, int y){
-    vis[x][y]=1;
-    for (int i=0 ; i<4 ; i++){
-        if (out(x+mx[i], y+my[i])==0 &&
-        v[x+mx[i]][y+my[i]]=='.'){
+int now=n;
+vector<int> ans;
 
-            dfs(x+mx[i], y+my[i]);
-        }
-    }
-    return;
+while (now!=1){
+    ans.push_back(now);
+    now=parent[now]; // 將目前的點設成他的父節點
 }
+ans.push_back(1);
+reverse(ans.begin(), ans.end());
+// 答案是 "逆推" 獲得，因此最後要反轉
 \end{lstlisting}
